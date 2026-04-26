@@ -1,5 +1,6 @@
 import './App.css';
 import bgImage from './images/free-image.jpg';
+import myProfileImage from './images/myProfileImage.jpg'
 export default function Body() {
   return (
     <>
@@ -12,30 +13,34 @@ export default function Body() {
             <span className="dot r"></span>
             <span className="dot y"></span>
             <span className="dot g"></span>
-            <div className="url-bar">alexmorgan.dev/about</div>
+            <div className="url-bar">devpro13.github.io/about </div>
           </div>
-
           {/* Scrollable content inside screen */}
           <div className="screen-inner">
             <div className="about-header">
-              <div className="avatar">A</div>
+              <div className="avatar">
+                 <img 
+                    src={myProfileImage}
+                    alt="Avatar"
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }}
+                  />
+              </div>
               <div className="about-intro">
-                <h1>Hello, I'm <em>Alex</em>.</h1>
-                <p className="role">UI/UX Designer &amp; Developer</p>
+                <h1>Hello, I'm <em>Dev</em>.</h1>
+                <p className="role">Electronics Engineer | SAA-CO3 Certified | DevOps | AI/ML | VLSI and Nanotechnology Enthusiast</p>
               </div>
             </div>
 
             <div className="divider"></div>
 
             <p className="bio">
-              I craft <strong>digital experiences</strong> that sit at the intersection of design and engineering.
-              With 6+ years building products for startups and global brands, I turn complex problems
-              into <strong>intuitive, beautiful interfaces</strong> people love to use.
+              Electronics Engineer passionate about contributing to Microelectronics, VLSI and Nanotechnology. I am keenly interested in design and performance optimization through Machine Learning and Deep Learning integration. I am also  interested in emerging fields such as embedded intelligent systems, quantum computing, AI, cloud computing, and data engineering.
             </p>
 
             <div className="skills-grid">
               <div className="skill-item">
-                <div className="skill-name">UI Design</div>
+                <div className="skill-name">Cloud Architect
+                </div>
                 <div className="skill-bar-bg"><div className="skill-bar" style={{ width: "92%" }}></div></div>
               </div>
               <div className="skill-item">
