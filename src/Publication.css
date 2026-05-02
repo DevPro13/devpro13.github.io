@@ -1,0 +1,354 @@
+/* ── Publications Section ──────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400&display=swap");
+
+:root {
+  --pub-bg: #07080a;
+  --pub-surface: #0f1014;
+  --pub-surface-hover: #141619;
+  --pub-border: rgba(255, 255, 255, 0.07);
+  --pub-border-hover: rgba(255, 255, 255, 0.13);
+  --pub-accent: #c8f064;
+  --pub-accent2: #4af0c4;
+  --pub-text: #dde0ea;
+  --pub-muted: #525769;
+  --pub-subtle: #373c50;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Section shell ─────────────────────────────────────── */
+.pub-section {
+  position: relative;
+  background: var(--pub-bg);
+  padding: 6.5rem 1.5rem 8rem;
+  overflow: hidden;
+  font-family: "DM Sans", sans-serif;
+}
+
+/* ── Ruled-line background texture ────────────────────── */
+.pub-bg-lines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 47px,
+      rgba(255, 255, 255, 0.018) 48px
+    ),
+    radial-gradient(ellipse at 80% 10%, rgba(200,240,100,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 10% 90%, rgba(74,240,196,0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* ── Header ────────────────────────────────────────────── */
+.pub-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 2.8rem;
+}
+.pub-heading {
+  font-family: "Syne", sans-serif;
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  font-weight: 700;
+  color: var(--pub-text);
+  margin: 0 0 0.55rem;
+  line-height: 1.05;
+}
+.pub-subhead {
+  font-size: 0.9rem;
+  color: var(--pub-muted);
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* ── Filter pills ──────────────────────────────────────── */
+.pub-filters {
+  display: flex;
+  justify-content: center;
+  gap: 0.55rem;
+  margin-bottom: 2.8rem;
+  flex-wrap: wrap;
+}
+.filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: "Syne", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--pub-muted);
+  background: var(--pub-surface);
+  border: 1px solid var(--pub-border);
+  border-radius: 99px;
+  padding: 0.38rem 0.9rem;
+  cursor: pointer;
+  transition: color 0.25s, background 0.25s, border-color 0.25s;
+}
+.filter-pill:hover {
+  color: var(--pub-text);
+  border-color: var(--pub-border-hover);
+}
+.filter-pill.active {
+  color: #0c0d0f;
+  background: var(--pub-accent);
+  border-color: var(--pub-accent);
+}
+.filter-count {
+  font-size: 0.62rem;
+  font-weight: 700;
+  background: rgba(255,255,255,0.12);
+  border-radius: 99px;
+  padding: 0.1rem 0.42rem;
+  line-height: 1.4;
+}
+.filter-pill.active .filter-count {
+  background: rgba(0,0,0,0.18);
+}
+
+/* ── List ──────────────────────────────────────────────── */
+.pub-list {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+/* ── Card ──────────────────────────────────────────────── */
+.pub-card {
+  display: flex;
+  align-items: stretch;
+  background: var(--pub-surface);
+  border: 1px solid var(--pub-border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition:
+    border-color 0.3s,
+    background 0.3s,
+    transform 0.35s var(--ease),
+    box-shadow 0.35s;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+
+  /* Scroll reveal */
+  opacity: 0;
+  transform: translateY(32px);
+}
+.pub-card.visible {
+  animation: pubReveal 0.55s var(--ease) var(--delay, 0s) both;
+}
+@keyframes pubReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+.pub-card:hover {
+  background: var(--pub-surface-hover);
+  border-color: var(--pub-border-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.45);
+}
+
+/* ── Accent sidebar bar ────────────────────────────────── */
+.pub-accent-bar {
+  width: 3px;
+  min-height: 100%;
+  flex-shrink: 0;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+.pub-card:hover .pub-accent-bar {
+  opacity: 1;
+}
+
+/* ── Main content ──────────────────────────────────────── */
+.pub-main {
+  flex: 1;
+  padding: 1.5rem 1.7rem 1.4rem;
+  min-width: 0;
+}
+
+/* ── Top row ───────────────────────────────────────────── */
+.pub-top-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+.pub-type-badge {
+  font-family: "Syne", sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 5px;
+  padding: 0.2rem 0.55rem;
+}
+.pub-year {
+  font-family: "Syne", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--pub-subtle);
+}
+.pub-citations {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.65rem;
+  color: var(--pub-muted);
+  margin-left: auto;
+}
+
+/* ── Title ─────────────────────────────────────────────── */
+.pub-title {
+  font-family: "Lora", Georgia, serif;
+  font-size: clamp(0.97rem, 2vw, 1.1rem);
+  font-weight: 600;
+  color: var(--pub-text);
+  margin: 0 0 0.55rem;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+
+/* ── Authors ───────────────────────────────────────────── */
+.pub-authors {
+  font-size: 0.8rem;
+  color: var(--pub-muted);
+  margin: 0 0 0.42rem;
+  line-height: 1.5;
+}
+.pub-authors strong {
+  color: var(--pub-accent);
+  font-weight: 600;
+}
+.author-sep { color: var(--pub-subtle); }
+
+/* ── Venue ─────────────────────────────────────────────── */
+.pub-venue {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--pub-muted);
+  margin: 0 0 0.9rem;
+  line-height: 1.5;
+}
+.pub-venue svg { flex-shrink: 0; opacity: 0.5; }
+.paper-overview{
+  display: flex;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--pub-muted);
+  margin: 0 0.9rem 0.9rem;
+  line-height: 1.5;
+  color: var(--pub-text);
+}
+/* ── Abstract drawer ───────────────────────────────────── */
+.pub-abstract-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition:
+    grid-template-rows 0.45s var(--ease),
+    opacity 0.35s ease,
+    margin-bottom 0.35s ease;
+  margin-bottom: 0;
+  overflow: hidden;
+}
+.pub-abstract-inner { min-height: 0; }
+
+/* ── Expandable Abstract ───────────────────────────────── */
+.pub-abstract-wrap.open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin-bottom: 1rem;
+  max-height: 800px; /* large enough for your content */
+}
+
+.pub-abstract {
+  font-family: "Lora", Georgia, serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.82;
+  color: #e9fae9;
+  margin: 0 0 0.85rem;
+  border-left: 2px solid rgba(255,255,255,0.07);
+  padding-left: 1rem;
+}
+.pub-keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+  margin-bottom: 0.7rem;
+}
+.kw-chip {
+  font-family: "Syne", sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: white;
+  background: rgba(197, 210, 207, 0.07);
+  border: 1px solid rgba(100, 112, 109, 0.18);
+  border-radius: 5px;
+  padding: 0.18rem 0.52rem;
+}
+.pub-doi {
+  font-size: 0.72rem;
+  color:var(--pub-muted);
+  margin: 0;
+}
+.doi-link {
+  color: blue;
+  text-decoration: underline;
+  text-decoration-color: var(--pub-subtle);
+  transition: color 0.2s;
+}
+.doi-link:hover { color: var(--pub-text); }
+
+/* ── Actions ───────────────────────────────────────────── */
+.pub-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.pub-toggle {
+  font-family: "Syne", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--pub-accent);
+  background: rgba(200,240,100,0.07);
+  border: 1px solid rgba(200,240,100,0.18);
+  border-radius: 99px;
+  padding: 0.32rem 0.85rem;
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, transform 0.2s;
+}
+.pub-toggle:hover {
+  background: rgba(200,240,100,0.14);
+  border-color: rgba(200,240,100,0.38);
+  transform: translateY(-1px);
+}
+.pub-read-link {
+  font-family: "Syne", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--pub-muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--pub-subtle);
+  padding-bottom: 1px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.pub-read-link:hover {
+  color: var(--pub-text);
+  border-color: var(--pub-text);
+}
+/* ── Responsive ────────────────────────────────────────── */
+@media (max-width: 520px) {
+  .pub-main { padding: 1.1rem 1.1rem 1.1rem; }
+  .pub-citations { margin-left: 0; }
+}
