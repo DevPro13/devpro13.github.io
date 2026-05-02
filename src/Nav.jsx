@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './App.css';
+import './Navigation.css';
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -27,6 +27,7 @@ export default function Nav() {
       {/* Desktop links */}
       <ul className="nav-links">
         <li><a href="#home" className="active">Home</a></li>
+        <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#publication">Publications</a></li>
         <li><a href="#blogs">Blogs</a></li>
@@ -48,6 +49,7 @@ export default function Nav() {
       <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
         <ul className="mobile-nav-links">
           <li><a href="#home" className="active" onClick={handleLinkClick}>Home</a></li>
+          <li><a href="#about" onClick={handleLinkClick}>About</a></li>
           <li><a href="#projects" onClick={handleLinkClick}>Projects</a></li>
           <li><a href="#publication" onClick={handleLinkClick}>Publications</a></li>
           <li><a href="#blogs" onClick={handleLinkClick}>Blogs</a></li>

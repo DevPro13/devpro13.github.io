@@ -1,0 +1,360 @@
+/* ── Projects Section ──────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&display=swap");
+
+:root {
+  --p-bg: #09090b;
+  --p-surface: #111114;
+  --p-border: rgba(255, 255, 255, 0.08);
+  --p-accent: #c8f064;
+  --p-accent2: #4af0c4;
+  --p-text: #e2e4ec;
+  --p-muted: #5a5f72;
+  --p-card-radius: 20px;
+  --p-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Section shell ─────────────────────────────────────── */
+.projects-section {
+  position: relative;
+  background: var(--p-bg);
+  padding: 6rem 1.5rem 7rem;
+  overflow: hidden;
+  font-family: "DM Sans", sans-serif;
+}
+
+/* ── Background orbs ───────────────────────────────────── */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+}
+.orb-a {
+  width: 420px; height: 420px;
+  top: -100px; right: -100px;
+  background: radial-gradient(circle, rgba(200,240,100,0.08) 0%, transparent 70%);
+}
+.orb-b {
+  width: 360px; height: 360px;
+  bottom: -80px; left: -80px;
+  background: radial-gradient(circle, rgba(74,240,196,0.07) 0%, transparent 70%);
+}
+
+/* ── Header ────────────────────────────────────────────── */
+.proj-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+.proj-eyebrow {
+  display: inline-block;
+  font-family: "Syne", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--p-accent);
+  margin-bottom: 0.6rem;
+}
+.proj-heading {
+  font-family: "Syne", sans-serif;
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  font-weight: 800;
+  color: var(--p-text);
+  margin: 0 0 0.5rem;
+  line-height: 1.05;
+}
+.proj-subhead {
+  font-size: 0.92rem;
+  color: var(--p-muted);
+  margin: 0;
+}
+
+/* ── Counter ───────────────────────────────────────────── */
+.proj-counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+.counter-current {
+  font-family: "Syne", sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--p-accent);
+}
+.counter-sep {
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--p-border);
+}
+.counter-total {
+  font-family: "Syne", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--p-muted);
+}
+
+/* ── Card stage ────────────────────────────────────────── */
+.card-stage {
+  max-width: 640px;
+  margin: 0 auto 2.4rem;
+  perspective: 1200px;
+}
+
+/* ── Card ──────────────────────────────────────────────── */
+.proj-card {
+  background: var(--p-surface);
+  border: 1px solid var(--p-border);
+  border-radius: var(--p-card-radius);
+  overflow: hidden;
+  box-shadow:
+    0 4px 24px rgba(0,0,0,0.4),
+    0 1px 0 rgba(255,255,255,0.04) inset;
+  will-change: transform, opacity;
+}
+
+/* Enter state (default visible) */
+.proj-card.enter {
+  animation: cardEnter 0.42s var(--p-ease) both;
+}
+@keyframes cardEnter {
+  from { opacity: 0; transform: translateX(48px) scale(0.97); }
+  to   { opacity: 1; transform: translateX(0)    scale(1); }
+}
+
+/* Exit animations */
+.proj-card.exit-next {
+  animation: exitLeft 0.38s var(--p-ease) both;
+}
+@keyframes exitLeft {
+  to { opacity: 0; transform: translateX(-60px) scale(0.95); }
+}
+.proj-card.exit-prev {
+  animation: exitRight 0.38s var(--p-ease) both;
+}
+@keyframes exitRight {
+  to { opacity: 0; transform: translateX(60px) scale(0.95); }
+}
+
+/* ── Card image ────────────────────────────────────────── */
+.card-image-wrap {
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+}
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s var(--p-ease);
+}
+.proj-card:hover .card-image {
+  transform: scale(1.04);
+}
+.card-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(9,9,11,0) 40%,
+    rgba(9,9,11,0.7) 100%
+  );
+}
+.card-tag {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  font-family: "Syne", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0c0d0f;
+  background: var(--p-accent);
+  padding: 0.25rem 0.65rem;
+  border-radius: 99px;
+}
+.card-year {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-family: "Syne", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.55);
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
+  padding: 0.22rem 0.6rem;
+  border-radius: 99px;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ── Card body ─────────────────────────────────────────── */
+.card-body {
+  padding: 1.6rem 1.8rem 1.8rem;
+}
+.card-title {
+  font-family: "Syne", sans-serif;
+  font-size: clamp(1.3rem, 3.5vw, 1.7rem);
+  font-weight: 800;
+  color: var(--p-text);
+  margin: 0 0 0.65rem;
+  line-height: 1.15;
+}
+.card-bio {
+  font-size: 0.92rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: #8a90a4;
+  margin: 0 0 1.2rem;
+}
+
+/* ── Expand button ─────────────────────────────────────── */
+.expand-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: "Syne", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--p-accent);
+  background: rgba(200, 240, 100, 0.07);
+  border: 1px solid rgba(200, 240, 100, 0.2);
+  border-radius: 99px;
+  padding: 0.38rem 1rem;
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, transform 0.2s;
+  margin-bottom: 0;
+}
+.expand-btn:hover {
+  background: rgba(200, 240, 100, 0.14);
+  border-color: rgba(200, 240, 100, 0.45);
+  transform: translateY(-1px);
+}
+
+/* ── Expandable details drawer ─────────────────────────── */
+.card-details {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s var(--p-ease),
+              opacity 0.35s ease,
+              margin-top 0.35s ease;
+  opacity: 0;
+  margin-top: 0;
+  overflow: hidden;
+}
+.card-details.open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  margin-top: 1.2rem;
+}
+/* Inner wrapper needed for grid-template-rows trick */
+.card-details > * {
+  min-height: 0;
+}
+.details-text {
+  font-size: 0.88rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: #7c83a0;
+  margin: 0 0 1rem;
+  border-left: 2px solid rgba(200,240,100,0.3);
+  padding-left: 1rem;
+}
+.stack-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-bottom: 1.1rem;
+}
+.stack-chip {
+  font-family: "Syne", sans-serif;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--p-accent2);
+  background: rgba(74, 240, 196, 0.08);
+  border: 1px solid rgba(74, 240, 196, 0.2);
+  border-radius: 6px;
+  padding: 0.22rem 0.6rem;
+}
+.proj-link {
+  display: inline-block;
+  font-family: "Syne", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--p-text);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding-bottom: 1px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.proj-link:hover {
+  color: var(--p-accent);
+  border-color: var(--p-accent);
+}
+
+/* ── Navigation ────────────────────────────────────────── */
+.proj-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+}
+.nav-btn {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--p-surface);
+  border: 1px solid var(--p-border);
+  color: var(--p-text);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.25s, border-color 0.25s, transform 0.2s, color 0.25s;
+}
+.nav-btn:hover {
+  background: rgba(200,240,100,0.1);
+  border-color: rgba(200,240,100,0.35);
+  color: var(--p-accent);
+  transform: scale(1.08);
+}
+.dot-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--p-border);
+  border: 1px solid rgba(255,255,255,0.12);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s, width 0.3s;
+  padding: 0;
+}
+.dot.active {
+  background: var(--p-accent);
+  border-color: var(--p-accent);
+  width: 22px;
+  border-radius: 99px;
+  transform: none;
+}
+.dot:not(.active):hover {
+  background: rgba(200,240,100,0.35);
+  transform: scale(1.3);
+}
+
+/* ── Responsive ────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .card-image-wrap { height: 190px; }
+  .card-body { padding: 1.2rem 1.2rem 1.4rem; }
+}

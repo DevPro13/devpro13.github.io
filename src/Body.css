@@ -1,0 +1,238 @@
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #f5f0e8;
+    --dark: #0d0d0d;
+    --accent:#c8f064;  /* #c8a96e; */
+    --muted: #888;
+    --screen-bg: #fff;
+    --text: #f0ede6;
+    --green: #b5f542;
+    --role_color:#b3a6a6;
+    --muted: #888;
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    background: #0d0d0d;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+  /* ── HERO / LAPTOP SECTION ── */
+  .laptop-hero {
+    position: relative;
+    width: 100%;
+    /* Maintain the image's aspect ratio 5760:3840 = 3:2 */
+    padding-top: min(66.67%, 95vh);
+    overflow:hidden;
+    margin-top: 50px;
+  }
+  .laptop-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%; 
+    height: 100%;
+    object-fit:cover;
+    object-position: center;
+  }
+
+  /* Laptop screen overlay — precisely fitted to the white screen area */
+  .screen-content {
+    position: absolute;
+    /* These match the white screen region in the image */
+    padding: 0.5px;
+    left: 25.1%;
+    top: 14.29%;
+    width: 45.18%;
+    height: 64.15%;
+    display:flex;
+    flex-direction: column;
+    overflow: hidden;              /* disables internal scroll */
+    overscroll-behavior: none;     /* prevents scroll chaining issues */
+    border-radius: clamp(4px, 1vw, 12px); /* scales with viewport */
+  }
+  /* ================= Mobile devices ================= */
+  @media(width<1304px){
+   .screen-content {
+    position: absolute;
+    /* These match the white screen region in the image */
+    left: 25.1%;
+    top: 26.8%;
+    width: 45.2%;
+    height: 42.6%;
+    overflow: none;
+    display: flex;
+    padding: 0.5px;
+  }
+}
+  @media(1920px> width >1886px){
+   .screen-content {
+    top: clamp(14.29%, 13.29vw / 19.2, 26.9%);
+    height: clamp(42.7% 42.6vw / 19.2, 64.15%);
+    overflow: none;
+    display: flex;
+    padding: clamp(0.5px, 0.03vw, 1px);
+   border-radius: clamp(4px, 1vw, 12px);
+  }
+}
+@media(1887px> width >1775px){
+   .screen-content {
+    top: clamp(16.29%, 17.29vw / 19.2, 26.9%);
+  }
+}
+/* ================= Inside Laptop SCREEN ================= */
+
+.screen-inner {
+  flex: 1;
+  /* background: #faf9f6; */
+  background-color: #0e0e0e;
+  overflow-y: none;
+  scrollbar-width: thin;
+  scrollbar-color: #d2d2d2 transparent;
+  padding: clamp(0.6rem, 2vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.5rem, 1.5vw, 1.5rem);
+  animation: fadeInScreen 0.8s ease 0.3s both;
+  /* FIXES */
+  box-sizing: border-box;
+}
+
+.screen-inner * {
+  max-width: 100%;   /* prevent overflow */
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes fadeInScreen {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= ABOUT ================= */
+
+.about-header {
+  display: flex;
+  gap: clamp(0.7rem, 2vw, 0.5rem);
+  align-items: center;
+}
+
+.avatar {
+  width: clamp(100%);
+  border-radius: 5%;
+  position: relative;
+  z-index: 1;
+  object-fit: cover;
+  object-position: top;
+  left: -5%;
+  top:3%;
+  transform: scale(1.7);
+  filter: drop-shadow(0 0 10px rgba(96, 2, 100, 0.5));
+  filter:brightness(0.8) grayscale() contrast(1.2);
+  display: block;
+}
+.about-intro{
+  z-index: 1000;
+  color: var(--text);
+  float: right;
+  margin-left: -15%;
+  margin-top: -25%;
+
+}
+.about-intro h1 {
+  font-family: 'DM Serif Display', sans-serif;
+  font-size: clamp(1rem, 2.6vw, 1.9rem);
+  line-height: 1.1;
+  letter-spacing: 1px;
+  justify-content: center;
+}
+.about-intro h1 em {
+  color:var(--accent);
+  font-family: monospace;
+  background: none;
+  box-shadow: 20px 20px 60px rgba(1, 255, 31, 0.5);
+}
+
+.about-intro .role {
+  font-size: clamp(0.45rem, 1.1vw, 0.75rem);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.3em;
+  color: var(--role_color);
+}
+@media(width<1306px){
+.about-intro .role{
+  font-size:0.43rem;
+  letter-spacing: 0.01em;
+  position: relative;
+  left:-1px
+}
+.about-intro h1{
+  position: relative;
+  left:-10px
+
+}
+.about-intro h1 em{
+  letter-spacing: 0.01em;
+
+}
+}
+/* scroll indicator */
+  .scroll-hint {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 100;
+    animation: fadeIn 1s ease 1.2s both;
+    top:-44%;
+    right:-6%;
+  }
+  @media(width<1080px){
+   .scroll-hint {
+    display: none;
+   }
+}
+/*Hide when scrolling detected*/
+.scroll-hint.hide {
+  opacity: 0;
+  transform: translateX(-50%) translateY(10px);
+  pointer-events: none;
+}
+  .scroll-hint span {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color:var(--accent);
+  }
+  .scroll-line {
+    width: 2px;
+    height: 50px;
+    /* color:var(--green); */
+    background: linear-gradient(to bottom, var(--green), transparent);
+    animation: scrollDown 1.5s ease-in-out infinite;
+  }
+  @keyframes scrollDown {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* ── Keyframes ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }

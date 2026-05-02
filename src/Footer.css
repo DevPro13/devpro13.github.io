@@ -1,0 +1,35 @@
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem;
+  background: #030303;
+  font-size: 0.75rem;
+  color: #cbbdbd;
+  letter-spacing: 0.08em;
+  font-family: 'Space Mono', monospace;
+}
+
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.footer-socials a {
+  color: #cbbdbd;
+  font-size: 1.2rem;
+  transition: color 0.25s ease, transform 0.25s ease;
+  display: flex;
+  align-items: center;
+}
+
+.footer-socials a:hover {
+  color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.footer-copy {
+  margin: 0;
+}
