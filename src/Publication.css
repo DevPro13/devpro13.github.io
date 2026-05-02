@@ -19,7 +19,7 @@
 .pub-section {
   position: relative;
   background: var(--pub-bg);
-  padding: 6.5rem 1.5rem 8rem;
+  padding: 4.5rem 1.5rem 8rem;
   overflow: hidden;
   font-family: "DM Sans", sans-serif;
 }
