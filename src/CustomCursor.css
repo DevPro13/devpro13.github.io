@@ -20,8 +20,8 @@ body {
 
 /* When hovering links */
 .cursor-grow {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   border-color: rgb(182, 140, 140);
   background: transparent;
   border: 1px solid #39FF14;
