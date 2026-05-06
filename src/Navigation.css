@@ -11,12 +11,33 @@
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(200,169,110,0.2);
   }
-  .nav-logo {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.3rem;
-    color: var(--accent);
-    letter-spacing: 0.04em;
-  }
+.nav-logo {
+  position: relative;
+  background: #00000000;
+  padding: 5px 25px;
+  font-family: "Courier New", monospace;
+  font-size: 1.1rem;
+  color: #39FF14;
+  letter-spacing: 0.02em;
+  left:-1%;
+}
+
+/* Main tab */
+.tab {
+  position: relative;
+  background: #161617;
+  color: #39FF14;
+  font-family: monospace;
+  padding: 3px 15px;
+  display: inline-block;
+  clip-path: polygon(0 0, 65% 0, 100% 50%, 65% 100%, 0 100%);
+}
+/* Neon symbol */
+.symbol {
+  font-size: 20px;
+  color: #00f0ff;
+  text-shadow: 0 0 6px #00f0ff;
+}
   .nav-links {
     display: flex; gap: 2rem; list-style: none;
   }

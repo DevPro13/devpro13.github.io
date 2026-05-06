@@ -3,6 +3,7 @@ import './Navigation.css';
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
   // Close menu on resize to desktop
   useEffect(() => {
@@ -18,20 +19,66 @@ export default function Nav() {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
   }, [menuOpen]);
 
+  // Track active section using IntersectionObserver
+  useEffect(() => {
+    const sectionIds = ['home', 'about', 'projects', 'publication', 'blogs', 'experience'];
+
+    const observers = [];
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveSection(id);
+          }
+        },
+        {
+          root: null,
+          // Triggers when section enters the middle 40% of the viewport
+          rootMargin: '-30% 0px -60% 0px',
+          threshold: 0,
+        }
+      );
+
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((obs) => obs.disconnect());
+  }, []);
+
   const handleLinkClick = () => setMenuOpen(false);
+
+  const navLinks = [
+    { href: '#home', label: 'Home', id: 'home' },
+    { href: '#about', label: 'About', id: 'about' },
+    { href: '#projects', label: 'Projects', id: 'projects' },
+    { href: '#publication', label: 'Publications', id: 'publication' },
+    { href: '#blogs', label: 'Blogs', id: 'blogs' },
+    { href: '#experience', label: 'Experience', id: 'experience' },
+  ];
 
   return (
     <nav>
-      <div className="nav-logo">Devraj Parajuli</div>
+      <div className="nav-logo">
+        <div className="tab">
+          <span className="symbol">~</span>
+        </div>
+        cat ~/devraj-parajuli
+      </div>
 
       {/* Desktop links */}
       <ul className="nav-links">
-        <li><a href="#home" className="active">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#publication">Publications</a></li>
-        <li><a href="#blogs">Blogs</a></li>
-        <li><a href="#experience">Experience</a></li>
+        {navLinks.map(({ href, label, id }) => (
+          <li key={id}>
+            <a href={href} className={activeSection === id ? 'active' : ''}>
+              {label}
+            </a>
+          </li>
+        ))}
       </ul>
 
       {/* Hamburger button */}
@@ -48,12 +95,17 @@ export default function Nav() {
       {/* Mobile drawer */}
       <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
         <ul className="mobile-nav-links">
-          <li><a href="#home" className="active" onClick={handleLinkClick}>Home</a></li>
-          <li><a href="#about" onClick={handleLinkClick}>About</a></li>
-          <li><a href="#projects" onClick={handleLinkClick}>Projects</a></li>
-          <li><a href="#publication" onClick={handleLinkClick}>Publications</a></li>
-          <li><a href="#blogs" onClick={handleLinkClick}>Blogs</a></li>
-          <li><a href="#experience" onClick={handleLinkClick}>Experience</a></li>
+          {navLinks.map(({ href, label, id }) => (
+            <li key={id}>
+              
+                <a href={href}
+                className={activeSection === id ? 'active' : ''}
+                onClick={handleLinkClick}
+              >
+                {label}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
 
