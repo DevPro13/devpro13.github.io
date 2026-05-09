@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import myCV from "./docs/CV_Devraj_ParajuliCloudComputing.pdf";
 import "./About.css";
 const stats = [
   { num: "2+", label: "Years Exp." },
@@ -8,7 +9,17 @@ const stats = [
  
 export default function About() {
   const sectionRef = useRef(null);
- 
+  const functionDownloadCV=()=>{
+    const link = document.createElement("a");
+          link.href = myCV;
+          link.download = "CV_Devraj_Parajuli_2026.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+  const functionSayHello=()=>{
+    window.location.href="mailto:devrajparajuli13@gmail.com?subject=Hello%20There&body=Hi%20Devraj,%20I%20visited%20your%20portfolio...";
+  }
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -28,7 +39,7 @@ export default function About() {
   }, []);
  
   return (
-    <section className="about-section" ref={sectionRef}>
+    <section id="about" className="about-section" ref={sectionRef}>
       {/* Background grid accent */}
       <div className="about-grid-bg" aria-hidden="true" />
  
@@ -42,27 +53,20 @@ export default function About() {
  
         {/* Bio */}
         <p className="about-bio reveal">
-          Electronics Engineer passionate about contributing to{" "}
-          <em>Microelectronics</em>, <em>VLSI</em>, and{" "}
-          <em>Nanotechnology</em>. Keenly interested in design and performance
-          optimization through <em>Machine Learning</em> and{" "}
-          <em>Deep Learning</em> integration—alongside emerging fields such as
-          embedded intelligent systems, quantum computing, AI, cloud computing,
-          and data engineering.
+          I'm an <em>Electronics Engineer</em> graduated from Pulchowk Campus. My work span both in Hardware and Software domain. I am extremely passionate about hardware domain specially to{" "}
+          <em>Microelectronics</em>, <em>VLSI</em>, and <em>Nanotechnology</em>. 
+          <br/>
+          {"    "}My current research focuses on agentic methods for design and performance
+          optimization of IC through <em>Machine Learning</em> and{" "}
+          <em>Deep Learning</em>. Additionally, I am enthusiastic to emerging fields such as
+          <em>Embedded Intelligent Systems</em>, <em>Quantum Computing</em>, <em>Robotics</em>, <em>Cloud Computing</em>,
+          and <em>IoTs</em>.
+          <br />
+          {"    "}In <em>Software domain</em>, my expertise and skills lies in <em>Data Engineering</em>, <em>Backend Technology</em>, <em>System Design</em> and <em>Cloud Technologies</em>. I am recently certified with an <em>AWS Solution Architect- Associate</em> Certification and poses experience of designing <em>High Performance</em>, <em>Cost Effective</em>, <em>Resilient </em>and <em>Secure</em> Architectures in AWS Cloud.
         </p>
-        <div className="stats-row reveal">
-          {stats.map((s, i) => (
-            <div className="stat-card" key={i}>
-              <div className="stat-num">{s.num}</div>
-              <div className="stat-label">{s.label}</div>
-            </div>
-          ))}
-        </div>
- 
-        {/* CTA */}
         <div className="cta-row reveal">
-          <button className="btn-primary">Download CV</button>
-          <button className="btn-ghost">Say Hello →</button>
+          <button className="btn-primary" onClick={functionDownloadCV}>Download CV</button>
+          <button className="btn-ghost" onClick={functionSayHello}>Say Hello →</button>
         </div>
       </div>
     </section>
