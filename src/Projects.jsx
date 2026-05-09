@@ -1,67 +1,66 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Projects.css";
-
+import HardwareSign from "./images/electronics.png";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 // ── Sample project data — replace with your own ──────────
 const PROJECTS = [
   {
     id: 1,
-    title: "NeuroChip-ML",
-    tag: "VLSI · Machine Learning",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80",
+    category: "Software",
+    title: "Dijkstra-s-Algorithm-Visualizer",
+    tag: "C++, Data Structure",
+    image: "https://raw.githubusercontent.com/DevPro13/Dijkstra-s-Algorithm-Visualizer/refs/heads/main/Output/Demo.gif",
     bio: "A neuromorphic processing chip architecture optimized for on-device inference of deep neural networks at ultra-low power.",
-    details:
-      "NeuroChip-ML is a full custom VLSI design implementing a spiking neural network accelerator in 28 nm CMOS. The architecture features 512 leaky integrate-and-fire neurons arranged in a crossbar topology with local SRAM synaptic weights. Power consumption was reduced by 74 % compared to the baseline digital implementation through clock-gating, operand isolation, and a custom power-domain controller designed in Cadence Virtuoso. Layout vs. schematic (LVS) verification was performed in Mentor Calibre.",
+    details:"https://raw.githubusercontent.com/DevPro13/OCR-ENGINE-LITE/refs/heads/main/README.md",
     stack: ["Cadence Virtuoso", "Synopsys Design Compiler", "Python", "MATLAB"],
     year: "2024",
-    link: "#",
+    link: "https://github.com/DevPro13/Dijkstra-s-Algorithm-Visualizer",
   },
   {
     id: 2,
-    title: "CloudSense IoT",
+    category: "Hardware",
+    title: "Startracker Simulator for Attitude Determination of Spacecraft",
     tag: "Embedded · Cloud",
-    image: "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?w=800&q=80",
+    image: "https://raw.githubusercontent.com/DevPro13/Startracker-Simulator-for-Attitude-Determination-of-Spacecrafts/refs/heads/main/Media/StarTracker.jpg",
     bio: "End-to-end IoT pipeline for real-time environmental monitoring with edge inference and AWS-based data engineering.",
-    details:
-      "CloudSense deploys a fleet of STM32-based sensor nodes that perform on-device anomaly detection using a quantized CNN (TFLite Micro). Data is streamed over MQTT to an AWS IoT Core broker, processed by Lambda functions, stored in DynamoDB, and visualised through a Next.js dashboard. The project achieved sub-50 ms end-to-end latency from sensor event to dashboard update across 120 deployed nodes.",
-    stack: ["STM32", "AWS IoT Core", "TFLite Micro", "Next.js", "DynamoDB"],
+    details:"https://raw.githubusercontent.com/DevPro13/OCR-ENGINE-LITE/refs/heads/main/README.md",
+    stack: ["Raspberry PI", "PI Cam", "Star Catalogue", "Pyramid Search","CCD Sensor"],
     year: "2023",
-    link: "#",
+    link: "https://github.com/DevPro13/Startracker-Simulator-for-Attitude-Determination-of-Spacecrafts",
   },
   {
     id: 3,
-    title: "QuantumSim",
-    tag: "Quantum Computing",
-    image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800&q=80",
+    category: "Hardware",
+    title: "RISC-V-Complete-Multicycle-Processor Design",
+    tag: "VLSI design and verification",
+    image: "https://raw.githubusercontent.com/DevPro13/RISC-V-Complete-Multicycle-Processor-Design/refs/heads/main/Img/risc-v%20complete.jpg",
     bio: "A Python-based quantum circuit simulator supporting up to 20 qubits with noise modelling and gate-level visualisation.",
-    details:
-      "QuantumSim implements a full statevector simulator using NumPy tensor contractions. Supports all standard single- and two-qubit gates, mid-circuit measurements, and Kraus-operator noise channels. A custom Matplotlib renderer produces publication-quality circuit diagrams. The simulator was validated against IBM Qiskit on a suite of 400 reference circuits with < 1 e-10 state fidelity error. Performance benchmarks show 3× speed-up over Qiskit's statevector backend for circuits up to 16 qubits.",
-    stack: ["Python", "NumPy", "Matplotlib", "Qiskit (validation)"],
+    details:"https://raw.githubusercontent.com/DevPro13/RISC-V-Complete-Multicycle-Processor-Design/refs/heads/main/README.md",
+     stack: ["Python", "NumPy", "Matplotlib", "Qiskit (validation)"],
     year: "2023",
-    link: "#",
-  },
-  {
-    id: 4,
-    title: "NanoFET Optimizer",
-    tag: "Nanotechnology · ML",
-    image: "https://images.unsplash.com/photo-1581093450021-4a7360e9a6b5?w=800&q=80",
-    bio: "ML-driven parameter extraction and optimization for sub-10 nm FinFET devices, cutting characterization time by 60 %.",
-    details:
-      "NanoFET Optimizer uses a Gaussian Process surrogate model trained on TCAD simulation data (Silvaco Atlas) to predict FinFET I-V characteristics from geometric parameters. Bayesian optimization then navigates the design space to meet leakage and drive-current targets. The tool reduced the number of expensive TCAD simulation runs from ~3 000 to ~400 for a typical optimization task, while achieving < 2 % error on threshold voltage prediction across 1 200 test devices.",
-    stack: ["Python", "Scikit-learn", "GPyTorch", "Silvaco Atlas", "Pandas"],
-    year: "2022",
-    link: "#",
-  },
+    link: "https://github.com/DevPro13/RISC-V-Complete-Multicycle-Processor-Design",
+  }
 ];
 
 export default function Projects() {
+  const [activeTab, setActiveTab] = useState("hardware");
   const [current, setCurrent] = useState(0);
   const [direction, setDirection] = useState("next"); // "next" | "prev"
   const [animating, setAnimating] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const cardRef = useRef(null);
-
   const total = PROJECTS.length;
   const project = PROJECTS[current];
+  const [readme, setReadme] = useState("");
+  useEffect(() => {
+  setReadme("");
+  fetch(project.details)
+    .then((res) => res.text())
+    .then((text) => setReadme(text))
+    .catch((err) => console.error(err));
+
+}, [project]);
 
   function navigate(dir) {
     if (animating) return;
@@ -84,27 +83,40 @@ export default function Projects() {
   }, []);
 
   return (
-    <section className="projects-section">
-      {/* Background orbs */}
-      <div className="orb orb-a" aria-hidden="true" />
-      <div className="orb orb-b" aria-hidden="true" />
-
+    <section id="projects" className="projects-section">
+        {/* Label */}
+        <div className="project-inner">
+          <div className="project-label">
+            <span className="label-line"/>
+            <span>Projects</span>
+            <span className="label-line"/>
+          </div>
+        </div>
       {/* Header */}
       <div className="proj-header">
-        <span className="proj-eyebrow">Selected Work</span>
-        <h2 className="proj-heading">Projects</h2>
-        <p className="proj-subhead">
-          A curated selection of engineering and research projects.
-        </p>
+        <div className="proj-toggle-wrap">
+          <div className="proj-toggle">
+            <span
+              className={`toggle-glider ${activeTab === "software" ? "right" : ""}`}
+              aria-hidden="true"
+            />
+            <button
+              className={`toggle-btn ${activeTab === "hardware" ? "active" : ""}`}
+              onClick={() => { setActiveTab("hardware"); setCurrent(0); setExpanded(false); }}
+            >
+              <span className="toggle-icon"><img className="Hardwareicon" src={HardwareSign}/></span>
+              Hardware
+            </button>
+            <button
+              className={`toggle-btn ${activeTab === "software" ? "active" : ""}`}
+              onClick={() => { setActiveTab("software"); setCurrent(0); setExpanded(false); }}
+            >
+              <span className="toggle-icon">{'</>'}</span>
+              Software
+            </button>
+          </div>
+        </div>
       </div>
-
-      {/* Counter */}
-      <div className="proj-counter">
-        <span className="counter-current">{String(current + 1).padStart(2, "0")}</span>
-        <span className="counter-sep" />
-        <span className="counter-total">{String(total).padStart(2, "0")}</span>
-      </div>
-
       {/* Card stage */}
       <div className="card-stage">
         <div
@@ -119,7 +131,7 @@ export default function Projects() {
               className="card-image"
             />
             <div className="card-image-overlay" />
-            <span className="card-tag">{project.tag}</span>
+            {/* <span className="card-tag">{project.tag}</span> */}
             <span className="card-year">{project.year}</span>
           </div>
 
@@ -134,12 +146,16 @@ export default function Projects() {
               onClick={() => setExpanded((v) => !v)}
               aria-expanded={expanded}
             >
-              {expanded ? "Collapse ↑" : "See Details ↓"}
+              {expanded ? "Collapse ↑" : "See README.md ↓"}
             </button>
 
             {/* Expanded drawer */}
             <div className={`card-details ${expanded ? "open" : ""}`}>
-              <p className="details-text">{project.details}</p>
+              <div className="details-text markdown-body">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                       {readme}
+                    </ReactMarkdown>
+              </div>
               <div className="stack-row">
                 {project.stack.map((s) => (
                   <span className="stack-chip" key={s}>{s}</span>
