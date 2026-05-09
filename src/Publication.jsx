@@ -106,7 +106,6 @@ function PaperCard({ pub, index }) {
          <p className="paper-overview">
           {pub.overview}
         </p>
-
         {/* Expandable abstract */}
         <div className={`pub-abstract-wrap ${open ? "open" : ""}`}>
           <div className="pub-abstract-inner">
@@ -155,16 +154,16 @@ export default function Publication() {
     filter === "All" ? PUBLICATIONS : PUBLICATIONS.filter((p) => p.type === filter);
 
   return (
-    <section className="pub-section">
+    <section id="publication" className="pub-section">
       <div className="pub-bg-lines" aria-hidden="true" />
-
-      {/* Header */}
-      <div className="pub-header">
-        <h2 className="pub-heading">Publications</h2>
-        <p className="pub-subhead">
-        </p>
-      </div>
-
+      {/* Label */}
+        <div className="pub-inner">
+          <div className="pub-label">
+            <span className="label-line"/>
+            <span>Publications</span>
+            <span className="label-line"/>
+          </div>
+        </div>
       {/* Filter pills */}
       <div className="pub-filters">
         {types.map((t) => (

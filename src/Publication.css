@@ -19,11 +19,36 @@
 .pub-section {
   position: relative;
   background: var(--pub-bg);
-  padding: 4.5rem 1.5rem 8rem;
+  padding: 4.5rem 1.5rem 23rem;
   overflow: hidden;
   font-family: "DM Sans", sans-serif;
 }
-
+/* ── Pub Header Label ────────────────────────────────────────────── */
+.pub-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  padding: 3.3rem 0rem 0rem;
+}
+.pub-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: "Syne", sans-serif;
+  font-size: clamp(1.3rem, 3.5vw, 1.7rem);
+  font-weight: 450;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--pub-accent);
+}
+.label-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--about-accent), transparent);
+  opacity: 0.4;
+}
 /* ── Ruled-line background texture ────────────────────── */
 .pub-bg-lines {
   position: absolute;
@@ -40,29 +65,9 @@
   pointer-events: none;
 }
 
-/* ── Header ────────────────────────────────────────────── */
-.pub-header {
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto 2.8rem;
-}
-.pub-heading {
-  font-family: "Syne", sans-serif;
-  font-size: clamp(2.2rem, 6vw, 3.5rem);
-  font-weight: 700;
-  color: var(--pub-text);
-  margin: 0 0 0.55rem;
-  line-height: 1.05;
-}
-.pub-subhead {
-  font-size: 0.9rem;
-  color: var(--pub-muted);
-  margin: 0;
-  line-height: 1.7;
-}
-
 /* ── Filter pills ──────────────────────────────────────── */
 .pub-filters {
+  margin-top: 1.5rem;
   display: flex;
   justify-content: center;
   gap: 0.55rem;
