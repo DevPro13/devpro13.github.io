@@ -5,20 +5,20 @@ export default function Footer() {
   return (
     <footer>
       <div className="footer-socials">
-        <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <a href="https://instagram.com/dev13himself" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
           <FaInstagram />
         </a>
-        <a href="https://linkedin.com/in/yourhandle" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <a href="https://linkedin.com/in/devpro13" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
           <FaLinkedin />
         </a>
-        <a href="https://github.com/yourhandle" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <a href="https://github.com/devpro13" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
           <FaGithub />
         </a>
-        <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+        <a href="https://twitter.com/dev13himself" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
           <FaTwitter />
         </a>
       </div>
-      <p className="footer-copy">©2026 Devraj Parajuli</p>
+      <p className="footer-copy">Copyright © 2026 Devraj Parajuli. All Right Reserved.</p>
     </footer>
   );
 }

@@ -20,7 +20,7 @@ export default function Body() {
   return (
     <>
       {/*Laptop BG Section with my bio*/}
-      <section id="bio" className="laptop-hero">
+      <section id="home" className="laptop-hero">
         <img class="laptop-bg" src={bgImage} alt="bg image"/>
         <div className="screen-content">
           <div className="screen-inner">

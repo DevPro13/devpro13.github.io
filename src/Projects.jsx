@@ -5,6 +5,30 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 // ── Sample project data — replace with your own ──────────
 const PROJECTS = [
+  // {
+  //   id: ,
+  //   category: "",
+  //   title: "",
+  //   tag: "",
+  //   image: "",
+  //   bio: "",
+  //   details:"",
+  //   stack: [""],
+  //   year: "2024",
+  //   link: "",
+  // },
+  // {
+  //   id: ,
+  //   category: "Software",
+  //   title: "",
+  //   tag: "",
+  //   image: "",
+  //   bio: "",
+  //   details:"",
+  //   stack: [""],
+  //   year: "2024",
+  //   link: "",
+  // },
   {
     id: 1,
     category: "Software",
@@ -40,7 +64,31 @@ const PROJECTS = [
      stack: ["Python", "NumPy", "Matplotlib", "Qiskit (validation)"],
     year: "2023",
     link: "https://github.com/DevPro13/RISC-V-Complete-Multicycle-Processor-Design",
-  }
+  },
+   {
+    id: 4,
+    category: "Hardware",
+    title: "Fall Detection and Alerting System",
+    tag: "Fall Detection, Hardware Design, PI processor",
+    image: "https://raw.githubusercontent.com/DevPro13/Fall-Detection-and-Alarming-Sys/refs/heads/main/Resources/Images/IMG_20241230_154448.jpg",
+    bio: "FALL DEt",
+    details:"https://raw.githubusercontent.com/DevPro13/Fall-Detection-and-Alarming-Sys/refs/heads/main/README.md",
+     stack: ["Python", "Arduino", "LSTM", "KICAD","IMU"],
+    year: "2023",
+    link: "https://github.com/DevPro13/Fall-Detection-and-Alarming-Sys",
+  },
+  {
+    id: 5,
+    category: "Hardware",
+    title: "Internet of Medical Things and Streaming",
+    tag: "ESP32",
+    image: "https://raw.githubusercontent.com/SanimKumarKhatri/IOT_Streaming/refs/heads/main/ESP_With_IMU/IoMT%20Block.png",
+    bio: "",
+    details:"https://raw.githubusercontent.com/SanimKumarKhatri/IOT_Streaming/refs/heads/main/ESP_With_IMU/README.md",
+    stack: ["C++","MongoDB","MQTT Protocol","IMU"],
+    year: "2025",
+    link: "https://github.com/SanimKumarKhatri/IOT_Streaming",
+  },
 ];
 
 export default function Projects() {
@@ -93,7 +141,7 @@ export default function Projects() {
           </div>
         </div>
       {/* Header */}
-      <div className="proj-header">
+      <div className="proj-box">
         <div className="proj-toggle-wrap">
           <div className="proj-toggle">
             <span

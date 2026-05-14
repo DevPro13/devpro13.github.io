@@ -18,8 +18,11 @@
     transform: translate(-50%, -50%);
     transition: transform 0.15s ease, width 0.2s, height 0.2s;
     mix-blend-mode: difference;
+    opacity: 0;
     }
-
+    .cursor-visible{
+        opacity: 1;
+    }
     /* When hovering links */
     .cursor-grow {
     width: 45px;
