@@ -1,22 +1,8 @@
-import { useEffect, useState } from "react";
+import { React} from "react";
 import './Body.css';
 import bgImage from './images/laptop-bg-image.png';
 import myProfileImage from './images/image.png'
 export default function Body() {
-  const [hide, setHide] = useState(false);
- useEffect(() => {
-  const handleScroll = () => {
-    if (window.scrollY > 10) {
-      setHide(true);
-      window.removeEventListener("scroll", handleScroll);
-    }
-  };
-
-  window.addEventListener("scroll", handleScroll);
-
-  return () => window.removeEventListener("scroll", handleScroll);
-}, []);
-
   return (
     <>
       {/*Laptop BG Section with my bio*/}
@@ -38,7 +24,7 @@ export default function Body() {
               </div>
             </div>
           </div>
-           <div className={`scroll-hint${hide ? " hide" : ""}`}>
+           <div className="scroll-hint">
               <span>Scroll</span>
               <div className="scroll-line"></div>
           </div>

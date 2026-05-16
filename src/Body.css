@@ -13,7 +13,8 @@
   }
 
   html, body {
-    width: 100%; height: 100%;
+    width: 100%; 
+    height: 100%;
     background: #0d0d0d;
     font-family: 'DM Sans', sans-serif;
     color: var(--dark);
@@ -23,62 +24,48 @@
   /* ── HERO / LAPTOP SECTION ── */
   .laptop-hero {
     position: relative;
-    width: 100%;
-    /* Maintain the image's aspect ratio 5760:3840 = 3:2 */
-    padding-top: min(66.67%, 95vh);
     overflow:hidden;
-    margin-top: 50px;
+    aspect-ratio: 5760 / 3840;
+  }
+  @media (width>1550px) {
+    .laptop-hero{
+      margin-top: -9.2%;
+    }
   }
   .laptop-bg {
     position: absolute;
-    inset: 0;
     width: 100%; 
     height: 100%;
-    object-fit:cover;
+    object-fit:contain;
     object-position: center;
     padding: 2px;
+    display: block;
   }
   /* Laptop screen overlay — precisely fitted to the white screen area */
   .screen-content {
-      position: absolute;
-    /* Better responsive positioning */
-    inset: 14.29% 29.72% 21.56% 25.1%;
+    position: absolute;
+    left: 25.195%;
+    top: 27%;
+    width: 44.959%;
+    height: 42.239%;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     overscroll-behavior: none;
     border-radius: clamp(4px, 1vw, 12px);
     box-sizing: border-box;
+    object-position: center;
   }
-  /* ================= Mobile devices ================= */
   @media(width<1500px){
    .screen-content {
     position: absolute;
-    /* These match the white screen region in the image */
-    left: 24.9%;
+    left: 24.8%;
     top: 26.8%;
-    width: 45.2%;
-    height: 42.6%;
+    width: 45.3%;
+    height: 42.65%;
     padding-left: 2px;
   }
 }
-  @media(1920px> width >1886px){
-   .screen-content {
-    top: clamp(14.29%, 13.29vw / 19.2, 26.9%);
-    height: clamp(42.7% 42.6vw / 19.2, 64.15%);
-    overflow: none;
-    display: flex;
-    padding: clamp(0.5px, 0.03vw, 1px);
-   border-radius: clamp(4px, 1vw, 12px);
-  }
-}
-@media(1887px> width >1775px){
-   .screen-content {
-    top: clamp(16.29%, 17.29vw / 19.2, 26.9%);
-  }
-}
-/* ================= Inside Laptop SCREEN ================= */
-
 .screen-inner {
   flex: 1;
   background-color: #0e0e0e;
@@ -161,8 +148,8 @@
   margin-top: 0.3em;
   color: var(--role_color);
 }
-@media(width<1306px){
-.about-intro .role{
+@media(width<1500px){
+.role{
   font-size:0.43rem;
   letter-spacing: 0.01em;
   position: relative;
@@ -186,19 +173,13 @@
     align-items: center;
     z-index: 100;
     animation: fadeIn 1s ease 1.2s both;
-    top:-44%;
-    right:-6%;
+    top:-45%;
+    right:-6.5%;
   }
   @media(width<1080px){
    .scroll-hint {
     display: none;
    }
-}
-/*Hide when scrolling detected*/
-.scroll-hint.hide {
-  opacity: 0;
-  transform: translateX(-50%) translateY(10px);
-  pointer-events: none;
 }
   .scroll-hint span {
     font-size: 0.65rem;
