@@ -132,7 +132,7 @@
   transform: scale(1.15);
 }
 
-/* ── Card ──────────────────────────────────────────────── */
+/*Card */
 .proj-card {
   background: var(--project-surface);
   border: 1px solid var(--project-border);
@@ -143,7 +143,6 @@
     0 1px 0 rgba(255,255,255,0.04) inset;
   will-change: transform, opacity;
 }
-
 /* Enter state (default visible) */
 .proj-card.enter {
   animation: cardEnter 0.42s var(--project-ease) both;
@@ -339,7 +338,12 @@
   margin: 0 auto;
   align-items: start;
 }
-
+@media (width<512px) {
+.projects-grid{
+    width: auto;
+    padding: 0;
+  }
+}
 /* Cards stretch to fill their grid cell */
 .proj-card {
   width: clamp(700px, 30%, 380px);
@@ -471,11 +475,12 @@
   display: flex;
   justify-content: center;
   padding: 1.5rem 0 2rem;
+  color: var(--project-accent);
 }
 
 .view-more-btn {
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   color: inherit;
   padding: 0.6rem 1.8rem;
   border-radius: 999px;

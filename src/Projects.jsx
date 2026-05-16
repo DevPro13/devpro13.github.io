@@ -197,7 +197,7 @@ function ProjectCard({ project, onReadmeOpen }) {
   );
 }
  
-const VISIBLE_COUNT = 4;// no of projects tiles to display
+const VISIBLE_COUNT = 3;// no of projects tiles to display
 
 export default function Projects() {
   const [activeTab, setActiveTab]       = useState("hardware");
@@ -280,7 +280,7 @@ export default function Projects() {
           >
             {showAll
               ? `Show Less ↑`
-              : `View More (${filteredProjects.length - VISIBLE_COUNT} more) ↓`}
+              : `View More ↓`}
           </button>
         </div>
       )}
