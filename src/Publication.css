@@ -8,14 +8,13 @@
   --pub-border: rgba(255, 255, 255, 0.07);
   --pub-border-hover: rgba(255, 255, 255, 0.13);
   --pub-accent: #c8f064;
-  --pub-accent2: #4af0c4;
   --pub-text: #dde0ea;
   --pub-muted: #525769;
   --pub-subtle: #373c50;
-  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --pub-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ── Section shell ─────────────────────────────────────── */
+/*Section shell*/
 .pub-section {
   position: relative;
   background: var(--pub-bg);
@@ -23,7 +22,12 @@
   overflow: hidden;
   font-family: "DM Sans", sans-serif;
 }
-/* ── Pub Header Label ────────────────────────────────────────────── */
+@media(width<512px){
+  .pub-section {
+    padding-bottom: 50%;
+  }
+}
+/*Pub Header Label*/
 .pub-inner {
   max-width: 800px;
   margin: 0 auto;
@@ -131,7 +135,7 @@
   transition:
     border-color 0.3s,
     background 0.3s,
-    transform 0.35s var(--ease),
+    transform 0.35s var(--pub-ease),
     box-shadow 0.35s;
   box-shadow: 0 2px 16px rgba(0,0,0,0.3);
 
@@ -140,7 +144,7 @@
   transform: translateY(32px);
 }
 .pub-card.visible {
-  animation: pubReveal 0.55s var(--ease) var(--delay, 0s) both;
+  animation: pubReveal 0.55s var(--pub-ease) var(--delay, 0s) both;
 }
 @keyframes pubReveal {
   to { opacity: 1; transform: translateY(0); }
@@ -255,7 +259,7 @@
   grid-template-rows: 0fr;
   opacity: 0;
   transition:
-    grid-template-rows 0.45s var(--ease),
+    grid-template-rows 0.45s var(--pub-ease),
     opacity 0.35s ease,
     margin-bottom 0.35s ease;
   margin-bottom: 0;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Publication.css";
 
-// ── Replace with your own publications ───────────────────
 const PUBLICATIONS = [
   {
     id: 1,
@@ -33,7 +32,6 @@ const PUBLICATIONS = [
 ];
 
 const TYPE_COLORS = {
-    //Put color to paper category
   Journal: { bg: "rgba(200,240,100,0.10)", border: "rgba(200,240,100,0.3)", text: "#c8f064" },
 //   Conference: { bg: "rgba(74,240,196,0.10)", border: "rgba(74,240,196,0.3)", text: "#4af0c4" },
 //   Workshop: { bg: "rgba(160,120,255,0.10)", border: "rgba(160,120,255,0.3)", text: "#a078ff" },
