@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import "./Projects.css";
 import HardwareSign from "./images/electronics.png";
 import ReactMarkdown from "react-markdown";
@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 
 const PROJECTS = [
   {
-    id: 0,
+    id: 1,
     category: "Software",
     title: "Optical Character Recognition",
     tag: "C++, Data Structure",
@@ -17,8 +17,20 @@ const PROJECTS = [
     year: "2020",
     link: "https://github.com/DevPro13/OCR-ENGINE-LITE",
   },
+   {
+    id: 2,
+    category: "Software",
+    title: "29 Card Game Play: SmartBot using RUST",
+    tag: "RUST, MCTS",
+    image: "https://raw.githubusercontent.com/DevPro13/DumbBot/refs/heads/main/DumbBotVSSmartBotDemo.gif",
+    bio: "A smart bot to play 29-Card Game with another bot.",
+    details: "https://raw.githubusercontent.com/DevPro13/DumbBot/refs/heads/main/README.md",
+    stack: ["RUST", "MCTS", "Actix-web","SerdeJSON"],
+    year: "2023",
+    link: "https://github.com/DevPro13/DumbBot",
+  },
   {
-    id: 1,
+    id: 3,
     category: "Software",
     title: "Dijkstra-s-Algorithm-Visualizer",
     tag: "C++, Data Structure",
@@ -30,7 +42,7 @@ const PROJECTS = [
     link: "https://github.com/DevPro13/Dijkstra-s-Algorithm-Visualizer",
   },
   {
-    id: 2,
+    id: 4,
     category: "Hardware",
     title: "Startracker Simulator for Attitude Determination of Spacecraft",
     tag: "Startracker, CCD, Star Catalogue",
@@ -38,11 +50,11 @@ const PROJECTS = [
     bio: "A prototype of startracker developed with Raspbarry PI 3 and PI Camera. A star image simulator was programmed to simulate star image. Star finding algorithms was used to calculate the orientation of satellite.",
     details: "https://raw.githubusercontent.com/DevPro13/OCR-ENGINE-LITE/refs/heads/main/README.md",
     stack: ["Raspberry PI", "PI Cam", "Star Catalogue", "Pyramid Search", "CCD Sensor"],
-    year: "2023",
+    year: "2024",
     link: "https://github.com/DevPro13/Startracker-Simulator-for-Attitude-Determination-of-Spacecrafts",
   },
   {
-    id: 3,
+    id: 5,
     category: "Hardware",
     title: "RISC-V-Complete-Multicycle-Processor Design",
     tag: "VLSI design and verification",
@@ -50,11 +62,11 @@ const PROJECTS = [
     bio: "A complete multi-cycle processor was modelled and tested using System-Verilog.",
     details: "https://raw.githubusercontent.com/DevPro13/RISC-V-Complete-Multicycle-Processor-Design/refs/heads/main/README.md",
     stack: ["Python", "NumPy", "Matplotlib", "Qiskit (validation)"],
-    year: "2023",
+    year: "2024",
     link: "https://github.com/DevPro13/RISC-V-Complete-Multicycle-Processor-Design",
   },
   {
-    id: 4,
+    id: 6,
     category: "Hardware",
     title: "Fall Detection and Alerting System",
     tag: "Fall Detection, Hardware Design, PI processor",
@@ -62,11 +74,11 @@ const PROJECTS = [
     bio: "A wearable technology to detect the event of falls and alert nearly people. Compose of wearable sensors and alerting systems. LSTM model was used to detect fall events.",
     details: "https://raw.githubusercontent.com/DevPro13/Fall-Detection-and-Alarming-Sys/refs/heads/main/README.md",
     stack: ["Python", "Arduino", "LSTM", "KICAD", "IMU"],
-    year: "2024",
+    year: "2023",
     link: "https://github.com/DevPro13/Fall-Detection-and-Alarming-Sys",
   },
   {
-    id: 5,
+    id: 7,
     category: "Hardware",
     title: "Internet of Medical Things and Streaming",
     tag: "ESP32",
@@ -78,66 +90,140 @@ const PROJECTS = [
     link: "https://github.com/SanimKumarKhatri/IOT_Streaming",
   },
 ];
+function ReadmeModal({ project, onClose }) {
+  const [readme, setReadme] = useState("");
+  const [loading, setLoading] = useState(true);
+ 
+  // Fetch README when modal mounts
+  useEffect(() => {
+    fetch(project.details)
+      .then((r) => r.text())
+      .then((text) => { setReadme(text); setLoading(false); })
+      .catch(() => { setReadme("_README not available._"); setLoading(false); });
+  }, [project.details]);
+ 
+  // Close on Escape key
+  useEffect(() => {
+    const handler = (e) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [onClose]);
+ 
+  //Prevent background scroll while modal is open
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = ""; };
+  }, []);
+ 
+  return (
+    <div className="modal-backdrop" onClick={onClose}>
+      <div
+        className="modal-box"
+        onClick={(e) => e.stopPropagation()} // prevent backdrop click inside box
+      >
+        {/* Modal header */}
+        <div className="modal-header">
+          <h3 className="modal-title">{project.title}</h3>
+          <button className="modal-close-btn" onClick={onClose} aria-label="Close">
+            ✕
+          </button>
+        </div>
+ 
+        {/* Scrollable README body */}
+        <div className="modal-body markdown-body">
+          {loading
+            ? <p className="readme-loading">Loading README…</p>
+            : <ReactMarkdown remarkPlugins={[remarkGfm]}>{readme}</ReactMarkdown>
+          }
+        </div>
+ 
+        {/* Modal footer */}
+        <div className="modal-footer">
+          <div className="stack-row">
+            {project.stack.map((s) => (
+              <span className="stack-chip" key={s}>{s}</span>
+            ))}
+          </div>
+          <a
+            href={project.link}
+            className="proj-link"
+            target="_blank"
+            rel="noreferrer"
+          >
+            View on GitHub →
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+ 
+//Individual project card
+function ProjectCard({ project, onReadmeOpen }) {
+  return (
+    <div className="proj-card">
+      <div className="card-image-wrap">
+        <img src={project.image} alt={project.title} className="card-image" />
+        <div className="card-image-overlay" />
+        <span className="card-year">{project.year}</span>
+      </div>
+ 
+      <div className="card-body">
+        <h3 className="card-title">{project.title}</h3>
+        {project.bio && <p className="card-bio">{project.bio}</p>}
+        <div className="stack-row">
+          {project.stack.map((s) => (
+            <span className="stack-chip" key={s}>{s}</span>
+          ))}
+        </div>
+        <div className="card-footer">
+          <button
+            className="expand-btn"
+            onClick={() => onReadmeOpen(project)}
+          >
+            See README.md ↗
+          </button>
+          <a
+            href={project.link}
+            className="proj-link-inline"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub →
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+ 
+const VISIBLE_COUNT = 4;// no of projects tiles to display
 
 export default function Projects() {
-  const [activeTab, setActiveTab] = useState("hardware");
-  const [current, setCurrent] = useState(0);
-  const [direction, setDirection] = useState("next");
-  const [animating, setAnimating] = useState(false);
-  const [expanded, setExpanded] = useState(false);
-  const cardRef = useRef(null);
-  const [readme, setReadme] = useState("");
-
-  // ── Derived: filter by active tab, sort newest first ──────────────────────
+  const [activeTab, setActiveTab]       = useState("hardware");
+  const [modalProject, setModalProject] = useState(null);
+  const [showAll, setShowAll]           = useState(false);
+ 
   const filteredProjects = PROJECTS
     .filter((p) => p.category.toLowerCase() === activeTab)
     .sort((a, b) => Number(b.year) - Number(a.year));
-
-  const total = filteredProjects.length;
-  const project = filteredProjects[current] ?? filteredProjects[0];
-  // ──────────────────────────────────────────────────────────────────────────
-
-  // Fetch README whenever the active project changes
-  useEffect(() => {
-    if (!project) return;
-    setReadme("");
-    fetch(project.details)
-      .then((res) => res.text())
-      .then((text) => setReadme(text))
-      .catch((err) => console.error(err));
-  }, [project]);
-
-  function navigate(dir) {
-    if (animating) return;
-    setDirection(dir);
-    setAnimating(true);
-    setTimeout(() => {
-      setCurrent((c) =>
-        dir === "next" ? (c + 1) % total : (c - 1 + total) % total
-      );
-      setAnimating(false);
-      setExpanded(false);
-    }, 380);
-  }
-
+ 
+  const hasMore         = filteredProjects.length > VISIBLE_COUNT;
+  const visibleProjects = showAll
+    ? filteredProjects
+    : filteredProjects.slice(0, VISIBLE_COUNT);
+ 
+  // Reset "show all" when switching tabs
   function switchTab(tab) {
     setActiveTab(tab);
-    setCurrent(0);       // always start at the newest project
-    setExpanded(false);
+    setShowAll(false);
   }
-
-  // Close expanded drawer on Escape
-  useEffect(() => {
-    const handler = (e) => e.key === "Escape" && setExpanded(false);
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, []);
-
-  if (!project) return null;
-
+ 
+  const closeModal = useCallback(() => setModalProject(null), []);
+ 
   return (
     <section id="projects" className="projects-section">
-      {/* Label */}
+      {/* Section label */}
       <div className="project-inner">
         <div className="project-label">
           <span className="label-line" />
@@ -145,7 +231,7 @@ export default function Projects() {
           <span className="label-line" />
         </div>
       </div>
-
+ 
       {/* Tab toggle */}
       <div className="proj-box">
         <div className="proj-toggle-wrap">
@@ -173,93 +259,35 @@ export default function Projects() {
           </div>
         </div>
       </div>
-
-      {/* Card stage */}
-      <div className="card-stage">
-        <div
-          ref={cardRef}
-          className={`proj-card ${animating ? `exit-${direction}` : "enter"}`}
-        >
-          {/* Image */}
-          <div className="card-image-wrap">
-            <img src={project.image} alt={project.title} className="card-image" />
-            <div className="card-image-overlay" />
-            <span className="card-year">{project.year}</span>
-          </div>
-
-          {/* Body */}
-          <div className="card-body">
-            <h3 className="card-title">{project.title}</h3>
-            <p className="card-bio">{project.bio}</p>
-
-            <button
-              className="expand-btn"
-              onClick={() => setExpanded((v) => !v)}
-              aria-expanded={expanded}
-            >
-              {expanded ? "Collapse ↑" : "See README.md ↓"}
-            </button>
-
-            <div className={`card-details ${expanded ? "open" : ""}`}>
-              <div className="details-text markdown-body">
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>{readme}</ReactMarkdown>
-              </div>
-              <div className="stack-row">
-                {project.stack.map((s) => (
-                  <span className="stack-chip" key={s}>{s}</span>
-                ))}
-              </div>
-              <a
-                href={project.link}
-                className="proj-link"
-                target="_blank"
-                rel="noreferrer"
-              >
-                View Project →
-              </a>
-            </div>
-          </div>
-        </div>
+ 
+      {/* Tile grid */}
+      <div className="projects-grid">
+        {visibleProjects.map((project) => (
+          <ProjectCard
+            key={project.id}
+            project={project}
+            onReadmeOpen={setModalProject}
+          />
+        ))}
       </div>
-
-      {/* Navigation */}
-      <div className="proj-nav">
-        <button
-          className="nav-btn"
-          onClick={() => navigate("prev")}
-          aria-label="Previous project"
-        >
-          ←
-        </button>
-
-        <div className="dot-row">
-          {filteredProjects.map((_, i) => (
-            <button
-              key={i}
-              className={`dot ${i === current ? "active" : ""}`}
-              onClick={() => {
-                if (i === current || animating) return;
-                setDirection(i > current ? "next" : "prev");
-                setAnimating(true);
-                setTimeout(() => {
-                  setCurrent(i);
-                  setAnimating(false);
-                  setExpanded(false);
-                }, 380);
-              }}
-              aria-label={`Go to project ${i + 1}`}
-            />
-          ))}
+ 
+      {/* View More/Show Less projects if there are more than 4 projects */}
+      {hasMore && (
+        <div className="view-more-wrap">
+          <button
+            className="view-more-btn"
+            onClick={() => setShowAll((v) => !v)}
+          >
+            {showAll
+              ? `Show Less ↑`
+              : `View More (${filteredProjects.length - VISIBLE_COUNT} more) ↓`}
+          </button>
         </div>
-
-        <button
-          className="nav-btn"
-          onClick={() => navigate("next")}
-          aria-label="Next project"
-        >
-          →
-        </button>
-      </div>
+      )}
+      {/* View README.md window */}
+      {modalProject && (
+        <ReadmeModal project={modalProject} onClose={closeModal} />
+      )}
     </section>
   );
 }
