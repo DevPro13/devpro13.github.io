@@ -334,7 +334,6 @@
   color: var(--project-accent);
   border-color: var(--project-accent);
 }
-
 /* ── Navigation ────────────────────────────────────────── */
 .proj-nav {
   display: flex;
