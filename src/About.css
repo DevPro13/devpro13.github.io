@@ -18,7 +18,11 @@
   overflow: hidden;
   font-family: "DM Sans", sans-serif;
 }
-
+@media(width<512px){
+  .about-section {
+    padding-bottom: 10%;
+  }
+}
 /* Subtle dot-grid backdrop */
 .about-grid-bg {
   position: absolute;
