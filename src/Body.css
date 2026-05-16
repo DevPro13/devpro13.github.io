@@ -1,15 +1,11 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --cream: #f5f0e8;
-    --dark: #0d0d0d;
-    --accent:#c8f064;  /* #c8a96e; */
-    --muted: #888;
-    --screen-bg: #fff;
-    --text: #f0ede6;
-    --green: #b5f542;
-    --role_color:#b3a6a6;
-    --muted: #888;
+    --body-dark: #0d0d0d;
+    --body-accent:#c8f064;
+    --body-text: #f0ede6;
+    --body-green: #b5f542;
+    --body-role_color:#b3a6a6;
   }
 
   html, body {
@@ -17,7 +13,7 @@
     height: 100%;
     background: #0d0d0d;
     font-family: 'DM Sans', sans-serif;
-    color: var(--dark);
+    color: var(--body-dark);
     overflow-x: hidden;
     scroll-behavior: smooth;
   }
@@ -120,7 +116,7 @@
 }
 .about-intro{
   z-index: 1000;
-  color: var(--text);
+  color: var(--body-text);
   float: right;
   margin-left: -15%;
   margin-top: -25%;
@@ -134,7 +130,7 @@
   justify-content: center;
 }
 .about-intro h1 em {
-  color:var(--accent);
+  color:var(--body-accent);
   font-family: monospace;
   background: none;
   box-shadow: 20px 20px 60px rgba(1, 255, 31, 0.5);
@@ -146,7 +142,7 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-top: 0.3em;
-  color: var(--role_color);
+  color: var(--body-role_color);
 }
 @media(width<1500px){
 .role{
@@ -185,13 +181,13 @@
     font-size: 0.65rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color:var(--accent);
+    color:var(--body-accent);
   }
   .scroll-line {
     width: 2px;
     height: 50px;
-    /* color:var(--green); */
-    background: linear-gradient(to bottom, var(--green), transparent);
+    /* color:var(--body-green); */
+    background: linear-gradient(to bottom, var(--body-green), transparent);
     animation: scrollDown 1.5s ease-in-out infinite;
   }
   @keyframes scrollDown {
