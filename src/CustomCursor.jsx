@@ -1,34 +1,39 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import "./CustomCursor.css";
 export default function CustomCursor() {
-  useEffect(() => {
-    const cursor = document.querySelector(".cursor");
+  const cursorRef = useRef(null);
 
+  useEffect(() => {
+    const cursor = cursorRef.current;
+
+    // ── Move cursor ──────────────────────────────────────────
     const moveCursor = (e) => {
       cursor.style.left = e.clientX + "px";
-      cursor.style.top = e.clientY + "px";
-      // show cursor after first movement
+      cursor.style.top  = e.clientY + "px";
       cursor.classList.add("cursor-visible");
     };
 
-    document.addEventListener("mousemove", moveCursor);
-
-    // Hover effect on links
-    const links = document.querySelectorAll("a, button");
-
-    links.forEach((el) => {
-      el.addEventListener("mouseenter", () => {
+    const onMouseOver = (e) => {
+      if (e.target.closest("a, button")) {
         cursor.classList.add("cursor-grow");
-      });
-      el.addEventListener("mouseleave", () => {
+      }
+    };
+    const onMouseOut = (e) => {
+      if (e.target.closest("a, button")) {
         cursor.classList.remove("cursor-grow");
-      });
-    });
+      }
+    };
+
+    document.addEventListener("mousemove",  moveCursor);
+    document.addEventListener("mouseover",  onMouseOver);
+    document.addEventListener("mouseout",   onMouseOut);
 
     return () => {
-      document.removeEventListener("mousemove", moveCursor);
+      document.removeEventListener("mousemove",  moveCursor);
+      document.removeEventListener("mouseover",  onMouseOver);
+      document.removeEventListener("mouseout",   onMouseOut);
     };
   }, []);
 
-  return <div className="cursor"></div>;
+  return <div className="cursor" ref={cursorRef} />;
 }
