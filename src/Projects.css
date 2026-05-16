@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&display=swap");
 
 :root {
-  --proj-bg: #0f030355;
+  --proj-bg: #0c03031e;
   --project-surface: #111114;
   --project-border: rgba(255, 255, 255, 0.08);
   --project-accent: #c8f064;
@@ -131,12 +131,6 @@
 .toggle-btn.active .toggle-icon {
   transform: scale(1.15);
 }
-/* ── Card stage ────────────────────────────────────────── */
-.card-stage {
-  max-width: 750px;
-  margin: 1.3rem auto 2.4rem;
-  perspective: 1000px;
-}
 
 /* ── Card ──────────────────────────────────────────────── */
 .proj-card {
@@ -173,7 +167,7 @@
   to { opacity: 0; transform: translateX(60px) scale(0.95); }
 }
 
-/* ── Card image ────────────────────────────────────────── */
+/*Card image*/
 .card-image-wrap {
   position: relative;
   height: 320px;
@@ -227,7 +221,7 @@
   border: 1px solid rgba(255,255,255,0.1);
 }
 
-/* ── Card body ─────────────────────────────────────────── */
+/*Card body*/
 .card-body {
   padding: 1.6rem 1.8rem 1.8rem;
 }
@@ -288,7 +282,7 @@
   opacity: 1;
   margin-top: 1.2rem;
 }
-/* Inner wrapper needed for grid-template-rows trick */
+/* Inner wrapper needed for grid-template-rows */
 .card-details > * {
   min-height: 0;
 }
@@ -334,62 +328,163 @@
   color: var(--project-accent);
   border-color: var(--project-accent);
 }
-/* ── Navigation ────────────────────────────────────────── */
-.proj-nav {
+/* ── Tile grid */
+.projects-grid {
   display: flex;
-  align-items: center;
+  flex-wrap:wrap;
   justify-content: center;
-  gap: 1.4rem;
-}
-.nav-btn {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: var(--project-surface);
-  border: 1px solid var(--project-border);
-  color: var(--project-text);
-  font-size: 1.1rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.25s, border-color 0.25s, transform 0.2s, color 0.25s;
-}
-.nav-btn:hover {
-  background: rgba(200,240,100,0.1);
-  border-color: rgba(200,240,100,0.35);
-  color: var(--project-accent);
-  transform: scale(1.08);
-}
-.dot-row {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-.dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--project-border);
-  border: 1px solid rgba(255,255,255,0.12);
-  cursor: pointer;
-  transition: background 0.3s, transform 0.3s, width 0.3s;
-  padding: 0;
-}
-.dot.active {
-  background: var(--project-accent);
-  border-color: var(--project-accent);
-  width: 22px;
-  border-radius: 99px;
-  transform: none;
-}
-.dot:not(.active):hover {
-  background: rgba(200,240,100,0.35);
-  transform: scale(1.3);
+  gap: 2rem;
+  padding: 2rem clamp(1rem, 5vw, 4rem);
+  width: 100%;
+  margin: 0 auto;
+  align-items: start;
 }
 
-/* ── Responsive ────────────────────────────────────────── */
-@media (max-width: 480px) {
-  .card-image-wrap { height: 190px; }
-  .card-body { padding: 1.2rem 1.2rem 1.4rem; }
+/* Cards stretch to fill their grid cell */
+.proj-card {
+  width: clamp(700px, 30%, 380px);
+  display: flex;
+  flex-direction: column;   
+}
+
+.card-body {
+  flex: 1;            
+  display: flex;
+  flex-direction:column;
+}
+
+/* Loading placeholder inside the README drawer */
+.readme-loading {
+  opacity: 0.5;
+  font-style: italic;
+  padding: 1rem 0;
+}
+
+/* ── Modal backdrop ──────────────────────────────────────── */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;                        /* covers the full viewport */
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(20px);
+  z-index: 4000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease;
+}
+
+/* ── Modal box ───────────────────────────────────────────── */
+.modal-box {
+  background:var(--proj-bg); 
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  width: min(760px, 100%);
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.25s ease;
+  overflow: hidden;
+}
+
+/* ── Modal header  */
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+  color: var(--project-accent);
+}
+
+.modal-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  flex: 1;
+  padding-right: 1rem;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.1rem;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.15s;
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+.modal-close-btn:hover { opacity: 1; background: rgba(66, 223, 8, 0.08); }
+
+/*Modal scrollable body*/
+.modal-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  flex: 1;
+  color: var(--project-text);
+}
+
+/*Modal footer*/
+.modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+}
+
+/*Card footer*/
+.card-footer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 0.75rem;
+}
+
+.proj-link-inline {
+  font-size: 0.8rem;
+  opacity: 1;
+  text-decoration: none;
+  color: var(--project-accent);
+}
+
+/*Animations*/
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(24px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+/*View More / Show Less button  */
+.view-more-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 1.5rem 0 2rem;
+}
+
+.view-more-btn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: inherit;
+  padding: 0.6rem 1.8rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  letter-spacing: 0.03em;
+  transition: border-color 0.2s, background 0.2s;
+}
+.view-more-btn:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.05);
 }

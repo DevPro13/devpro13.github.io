@@ -61,7 +61,7 @@ const PROJECTS = [
     image: "https://raw.githubusercontent.com/DevPro13/RISC-V-Complete-Multicycle-Processor-Design/refs/heads/main/Img/risc-v%20complete.jpg",
     bio: "A complete multi-cycle processor was modelled and tested using System-Verilog.",
     details: "https://raw.githubusercontent.com/DevPro13/RISC-V-Complete-Multicycle-Processor-Design/refs/heads/main/README.md",
-    stack: ["Python", "NumPy", "Matplotlib", "Qiskit (validation)"],
+    stack: ["SystemVerilog", "ModelSim", "RISC-V", "TestBench"],
     year: "2024",
     link: "https://github.com/DevPro13/RISC-V-Complete-Multicycle-Processor-Design",
   },
