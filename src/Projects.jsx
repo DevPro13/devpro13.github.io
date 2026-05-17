@@ -48,7 +48,7 @@ const PROJECTS = [
     tag: "Startracker, CCD, Star Catalogue",
     image: "https://raw.githubusercontent.com/DevPro13/Startracker-Simulator-for-Attitude-Determination-of-Spacecrafts/refs/heads/main/Media/StarTracker.jpg",
     bio: "A prototype of startracker developed with Raspbarry PI 3 and PI Camera. A star image simulator was programmed to simulate star image. Star finding algorithms was used to calculate the orientation of satellite.",
-    details: "https://raw.githubusercontent.com/DevPro13/OCR-ENGINE-LITE/refs/heads/main/README.md",
+    details: "https://raw.githubusercontent.com/DevPro13/Fall-Detection-and-Alarming-Sys/refs/heads/main/README.md",
     stack: ["Raspberry PI", "PI Cam", "Star Catalogue", "Pyramid Search", "CCD Sensor"],
     year: "2024",
     link: "https://github.com/DevPro13/Startracker-Simulator-for-Attitude-Determination-of-Spacecrafts",
