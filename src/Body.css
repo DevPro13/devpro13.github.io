@@ -22,8 +22,9 @@
     position: relative;
     overflow:hidden;
     aspect-ratio: 5760 / 3840;
+    margin-top: 6%;
   }
-  @media (width>1550px) {
+  @media (width>1270px) {
     .laptop-hero{
       margin-top: -9.2%;
     }
