@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import './Navigation.css';
 
 export default function Nav() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+const [menuOpen, setMenuOpen] = useState(false);
+const [activeSection, setActiveSection] = useState('home');
 
   // Close menu on resize to desktop
   useEffect(() => {
@@ -80,7 +80,6 @@ export default function Nav() {
           </li>
         ))}
       </ul>
-
       {/* Hamburger button */}
       <button
         className={`hamburger ${menuOpen ? 'open' : ''}`}
