@@ -24,11 +24,15 @@ export default function Body() {
               </div>
             </div>
           </div>
-           <div className="scroll-hint">
+           {/* <div className="scroll-hint">
+              <span>Scroll</span>
+              <div className="scroll-line"></div>
+          </div> */}
+        </div>
+        <div className="scroll-hint">
               <span>Scroll</span>
               <div className="scroll-line"></div>
           </div>
-        </div>
       </section>
     </>
   );

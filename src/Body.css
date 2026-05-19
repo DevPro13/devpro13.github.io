@@ -168,10 +168,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 100;
+    z-index: 5000;
     animation: fadeIn 1s ease 1.2s both;
-    top:-45%;
-    right:-6.5%;
+    top:49%;
+    right:-48%;
   }
   @media(width<1080px){
    .scroll-hint {
@@ -179,14 +179,14 @@
    }
 }
   .scroll-hint span {
-    font-size: 0.65rem;
+    font-size: 0.8rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color:var(--body-accent);
   }
   .scroll-line {
-    width: 2px;
-    height: 50px;
+    width: 3.5px;
+    height: 90px;
     /* color:var(--body-green); */
     background: linear-gradient(to bottom, var(--body-green), transparent);
     animation: scrollDown 1.5s ease-in-out infinite;
