@@ -58,7 +58,7 @@ export default function About() {
           <br/>
           {"    "}My current research focuses on agentic methods for design and performance
           optimization of IC through <em>Machine Learning</em> and{" "}
-          <em>Deep Learning</em>. Additionally, I am enthusiastic to emerging fields such as
+          <em>Deep Learning</em>. Additionally, I am enthusiastic to emerging fields such as{" "}
           <em>Embedded Intelligent Systems</em>, <em>Quantum Computing</em>, <em>Robotics</em>, <em>Cloud Computing</em>,
           and <em>IoTs</em>.
           <br />
