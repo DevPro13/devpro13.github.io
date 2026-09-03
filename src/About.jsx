@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import myCV from "./docs/CV_Devraj_ParajuliCloudComputing.pdf";
+import myCV from "./docs/CV_Devraj_Parajuli__UniVersity_Aug.pdf";
 import "./About.css";
 const stats = [
   { num: "2+", label: "Years Exp." },
