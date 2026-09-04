@@ -31,30 +31,6 @@ const PROJECTS = [
   },
   {
     id: 3,
-    category: "Software",
-    title: "Dijkstra-s-Algorithm-Visualizer",
-    tag: "C++, Data Structure",
-    image: "https://raw.githubusercontent.com/DevPro13/Dijkstra-s-Algorithm-Visualizer/refs/heads/main/Output/Demo.gif",
-    bio: "A visualizer to visualize Dijkstra's shortest path finding algorithm. This is developed using C++.",
-    details: "https://raw.githubusercontent.com/DevPro13/Dijkstra-s-Algorithm-Visualizer/refs/heads/main/README.md",
-    stack: ["Queue", "Stack", "C++", "Greedy Algorithm","Shortest Path visual"],
-    year: "2022",
-    link: "https://github.com/DevPro13/Dijkstra-s-Algorithm-Visualizer",
-  },
-  {
-    id: 4,
-    category: "Hardware",
-    title: "Startracker Simulator for Attitude Determination of Spacecraft",
-    tag: "Startracker, CCD, Star Catalogue",
-    image: "https://raw.githubusercontent.com/DevPro13/Startracker-Simulator-for-Attitude-Determination-of-Spacecrafts/refs/heads/main/Media/StarTracker.jpg",
-    bio: "A prototype of startracker developed with Raspbarry PI 3 and PI Camera. A star image simulator was programmed to simulate star image. Star finding algorithms was used to calculate the orientation of satellite.",
-    details: "https://raw.githubusercontent.com/DevPro13/Fall-Detection-and-Alarming-Sys/refs/heads/main/README.md",
-    stack: ["Raspberry PI", "PI Cam", "Star Catalogue", "Pyramid Search", "CCD Sensor"],
-    year: "2024",
-    link: "https://github.com/DevPro13/Startracker-Simulator-for-Attitude-Determination-of-Spacecrafts",
-  },
-  {
-    id: 5,
     category: "Hardware",
     title: "RISC-V-Complete-Multicycle-Processor Design",
     tag: "VLSI design and verification",
@@ -66,7 +42,43 @@ const PROJECTS = [
     link: "https://github.com/DevPro13/RISC-V-Complete-Multicycle-Processor-Design",
   },
   {
+    id: 4,
+    category: "Software",
+    title: "Dijkstra-s-Algorithm-Visualizer",
+    tag: "C++, Data Structure",
+    image: "https://raw.githubusercontent.com/DevPro13/Dijkstra-s-Algorithm-Visualizer/refs/heads/main/Output/Demo.gif",
+    bio: "A visualizer to visualize Dijkstra's shortest path finding algorithm. This is developed using C++.",
+    details: "https://raw.githubusercontent.com/DevPro13/Dijkstra-s-Algorithm-Visualizer/refs/heads/main/README.md",
+    stack: ["Queue", "Stack", "C++", "Greedy Algorithm","Shortest Path visual"],
+    year: "2022",
+    link: "https://github.com/DevPro13/Dijkstra-s-Algorithm-Visualizer",
+  },
+  {
+    id: 5,
+    category: "Hardware",
+    title: "Design and Verification of a Fixed Point Attention Accelerator",
+    tag: "AI Accelerator, SYstemVerilog, Attention Mechanism",
+    image: "https://raw.githubusercontent.com/DevPro13/Design-and-Verification-of-a-Fixed-Point-Attention-Accelerator/refs/heads/main/inputfiles/AttentionMechanismIllustration.png",
+    bio: "A simple hardware acceerator to obtain the embedding vector for the input sequence of tokens.",
+    details: "https://raw.githubusercontent.com/DevPro13/Fall-Detection-and-Alarming-Sys/refs/heads/main/README.md",
+    stack: ["VLSI", "AI Accelerators", "Hardware Design", "HPC", "FPGA"],
+    year: "2026",
+    link: "https://github.com/DevPro13/Design-and-Verification-of-a-Fixed-Point-Attention-Accelerator",
+  },
+  {
     id: 6,
+    category: "Hardware",
+    title: "Startracker Simulator for Attitude Determination of Spacecraft",
+    tag: "Startracker, CCD, Star Catalogue",
+    image: "https://raw.githubusercontent.com/DevPro13/Startracker-Simulator-for-Attitude-Determination-of-Spacecrafts/refs/heads/main/Media/StarTracker.jpg",
+    bio: "A prototype of startracker developed with Raspbarry PI 3 and PI Camera. A star image simulator was programmed to simulate star image. Star finding algorithms was used to calculate the orientation of satellite.",
+    details: "https://raw.githubusercontent.com/DevPro13/Fall-Detection-and-Alarming-Sys/refs/heads/main/README.md",
+    stack: ["Raspberry PI", "PI Cam", "Star Catalogue", "Pyramid Search", "CCD Sensor"],
+    year: "2024",
+    link: "https://github.com/DevPro13/Startracker-Simulator-for-Attitude-Determination-of-Spacecrafts",
+  },
+  {
+    id: 7,
     category: "Hardware",
     title: "Fall Detection and Alerting System",
     tag: "Fall Detection, Hardware Design, PI processor",
@@ -78,7 +90,7 @@ const PROJECTS = [
     link: "https://github.com/DevPro13/Fall-Detection-and-Alarming-Sys",
   },
   {
-    id: 7,
+    id: 8,
     category: "Hardware",
     title: "Internet of Medical Things and Streaming",
     tag: "ESP32",
@@ -197,7 +209,7 @@ function ProjectCard({ project, onReadmeOpen }) {
   );
 }
  
-const VISIBLE_COUNT = 3;// no of projects tiles to display
+const VISIBLE_COUNT = 4;// no of projects tiles to display
 
 export default function Projects() {
   const [activeTab, setActiveTab]       = useState("hardware");
