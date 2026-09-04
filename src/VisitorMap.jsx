@@ -1,5 +1,4 @@
 import {React} from "react";
-import "./VisitorMap.css";
 export default function VisitorMap() {
   return (
     <section className="vm-section">
