@@ -60,7 +60,7 @@ const PROJECTS = [
     tag: "AI Accelerator, SYstemVerilog, Attention Mechanism",
     image: "https://raw.githubusercontent.com/DevPro13/Design-and-Verification-of-a-Fixed-Point-Attention-Accelerator/refs/heads/main/inputfiles/AttentionMechanismIllustration.png",
     bio: "A simple hardware acceerator to obtain the embedding vector for the input sequence of tokens.",
-    details: "https://raw.githubusercontent.com/DevPro13/Fall-Detection-and-Alarming-Sys/refs/heads/main/README.md",
+    details: "https://raw.githubusercontent.com/DevPro13/Design-and-Verification-of-a-Fixed-Point-Attention-Accelerator/refs/heads/main/README.md",
     stack: ["VLSI", "AI Accelerators", "Hardware Design", "HPC", "FPGA"],
     year: "2026",
     link: "https://github.com/DevPro13/Design-and-Verification-of-a-Fixed-Point-Attention-Accelerator",
