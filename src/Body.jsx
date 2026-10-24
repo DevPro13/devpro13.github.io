@@ -20,7 +20,7 @@ export default function Body() {
               </div>
               <div className="about-intro">
                 <h1>I'm <em>DEV</em>.</h1>
-                <p className="role">Electronics Engineer | SAA-CO3 Certified | DevOps | AI/ML | VLSI and Nanotechnology Enthusiast</p>
+                <p className="role">Electronics Engineer | SAA-CO3 Certified | VLSI and Nanotechnology Enthusiast | GNN | RISC-V | SystemVerilog</p>
               </div>
             </div>
           </div>
