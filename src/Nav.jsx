@@ -21,7 +21,7 @@ const [activeSection, setActiveSection] = useState('home');
 
   // Track active section using IntersectionObserver
   useEffect(() => {
-    const sectionIds = ['home', 'about', 'projects', 'publication', 'blogs', 'experience'];
+    const sectionIds = ['home', 'about','research', 'projects', 'publication', 'news'];
 
     const observers = [];
 
@@ -55,10 +55,10 @@ const [activeSection, setActiveSection] = useState('home');
   const navLinks = [
     { href: '#home', label: 'Home', id: 'home' },
     { href: '#about', label: 'About', id: 'about' },
+    { href: '#research', label: 'Research', id: 'research' },
     { href: '#projects', label: 'Projects', id: 'projects' },
     { href: '#publication', label: 'Publications', id: 'publication' },
-    { href: '#blogs', label: 'Blogs', id: 'blogs' },
-    { href: '#experience', label: 'Experience', id: 'experience' },
+    { href: '#news', label: 'News', id: 'news' },
   ];
 
   return (
