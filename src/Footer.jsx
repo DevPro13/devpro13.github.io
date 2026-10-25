@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer>
       <div className="footer-socials">
-        <a href="https://instagram.com/dev13himself" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <a href="https://instagram.com/devpro13_" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
           <FaInstagram />
         </a>
         <a href="https://linkedin.com/in/devpro13" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
