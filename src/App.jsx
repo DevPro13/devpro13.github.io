@@ -5,6 +5,8 @@ import About from "./About";
 import Projects from "./Projects";
 // import Blogs from "./Blogs";
 import Publication from "./Publication";
+import News from "./News";
+import Research from "./Research";
 import VisitorMap from "./VisitorMap";
 import CustomCursor from "./CustomCursor";
 export default function App() {
@@ -15,8 +17,9 @@ export default function App() {
       <Body />
       <About />
       <Projects />
+      <Research />
       <Publication />
-      {/* <Blogs />*/}
+      <News />
       <VisitorMap />
       <Footer />
     </>
