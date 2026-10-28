@@ -157,9 +157,9 @@ export default function Publication() {
       {/* Label */}
         <div className="pub-inner">
           <div className="pub-label">
-            <span className="label-line"/>
+            <span className="pub-label-line"/>
             <span>Publications</span>
-            <span className="label-line"/>
+            <span className="pub-label-line"/>
           </div>
         </div>
       {/* Filter pills */}

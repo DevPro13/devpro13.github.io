@@ -47,7 +47,7 @@
   text-transform: uppercase;
   color: var(--pub-accent);
 }
-.label-line {
+.pub-label-line {
   flex: 1;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--about-accent), transparent);
